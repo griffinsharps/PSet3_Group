@@ -26,20 +26,32 @@ import altair as alt
 np.random.seed(42)
 data = pd.DataFrame(np.random.rand(100), columns=['Random Numbers'])
 
-def preview_data(df):
-    print(df.head())
+def describe_function(df, material):
+    header = material
+    results = df.describe()
+    return [header, results]
 
-preview_data(data)
+result = describe_function(data, "Random Numbers Summary")
+print(result[0]) 
+print(result[1])  
 
-def preview_data(df):
+
+
+import pandas as pd
+import numpy as np
+import altair as alt
+
+def combined_function(df, material):
     data_head = df.head()
-    
+    data_description = df.describe()
+
     histogram = alt.Chart(df).mark_bar().encode(
-        alt.X('Random Numbers:Q', bin=True),
+        alt.X(f'{material}:Q', bin=True),
         y='count()'
     ).properties(
-        title='Histogram of Random Numbers'
+        title=f'Histogram of {material}'
     )
-  
-    return [data_head, histogram]
+
+    return [data_head, data_description, histogram]
+
 ```
