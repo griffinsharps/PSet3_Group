@@ -54,4 +54,12 @@ def combined_function(df, material):
 
     return [data_head, data_description, histogram]
 
+np.random.seed(42)
+data = pd.DataFrame(np.random.rand(100), columns=['Random Numbers'])
+
+result = combined_function(data, 'Random Numbers')
+
+print(result[0])
+print(result[1])
+result[2].display()
 ```
